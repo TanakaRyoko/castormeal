@@ -20,8 +20,8 @@ Route::get('/', function () {
 
 Route::get('vessel/create', 'VesselController@add')->middleware('auth');
 Route::post('vessel/create', 'VesselController@add')->middleware('auth');
-Route::get('vessel/create', 'VesselController@add')->middleware('auth');
-Route::get('vessel/create', 'VesselController@add')->middleware('auth');
+Route::get('agent/create', 'AgentController@add')->middleware('auth');
+Route::post('agent/create', 'AgentController@add')->middleware('auth');
 
 Auth::routes();
 

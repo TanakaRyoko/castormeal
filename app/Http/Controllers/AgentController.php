@@ -7,4 +7,7 @@ use Illuminate\Http\Request;
 class AgentController extends Controller
 {
     //
+    public function add(){
+        return view('agent.create');
+    }
 }

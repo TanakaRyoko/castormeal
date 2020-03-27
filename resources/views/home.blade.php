@@ -13,7 +13,7 @@
     <div class="container">
         <div class ="row" id="command">
             <div class="col-md-6">
-            <input type="button" id="button" value="本船情報登録" style="width:300px;height:100px">
+            <input type="button" id="button" value="本船情報登録" style="width:300px;height:100px"  onclick="location:href='vessel/create.blade.php'">
             </div>
             <div class="col-md-6">
             <input type="button" id="button" value="動静表更新" style="width:300px;height:100px">
