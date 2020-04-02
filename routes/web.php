@@ -23,6 +23,11 @@ Route::post('vessel/create', 'VesselController@add')->middleware('auth');
 Route::get('agent/create', 'AgentController@add')->middleware('auth');
 Route::post('agent/create', 'AgentController@add')->middleware('auth');
 
+Route::get('/import_excel', 'ImportExcelController@index');
+Route::post('/import_excel/import', 'ImportExcelController@import');
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
