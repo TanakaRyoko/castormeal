@@ -25,7 +25,10 @@ Route::post('agent/create', 'AgentController@add')->middleware('auth');
 
 Route::get('/import_excel', 'ImportExcelController@index');
 Route::post('/import_excel/import', 'ImportExcelController@import');
+Route::get('/export_excel', 'ImportExcelController@export');
 
+Route::get('/export_excel', 'ExportExcelController@index');
+Route::get('/export_excel/excel', 'ExportExcelController@excel')->name('export_excel.excel');
 
 
 Auth::routes();

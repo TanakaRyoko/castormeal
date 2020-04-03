@@ -6,15 +6,17 @@ use Illuminate\Http\Request;
 use DB;
 use Excel;
 use App\Exports\DateExport;
-
+use App\Model\Vessel;
 class ImportExcelController extends Controller
 {
     function index()
     {
-     $data = DB::table('vessels')->orderBy('contract_no', 'DESC')->get();
+     $data = DB::table('vessels')->orderBy('contract_no', 'ASC')->get();
      return view('import_excel', compact('data'));
      
     }
+    
+    
 
     function import(Request $request)
     {
@@ -27,7 +29,7 @@ class ImportExcelController extends Controller
     $data = Excel::load($path)->get();
     
     
-      // dd($data);
+      
       
      if($data->count() > 0)
      {
@@ -36,22 +38,22 @@ class ImportExcelController extends Controller
       
         
         
-       foreach($data as $key => $value)
-       {
+      // foreach($data as $datas)
+      // {
+      
         
+         foreach($data as $rows){
         
-         foreach($value as $row){
-         dd($value);
         $insert_data[] = array(
-         'ContractNo'  => $row['contract_no'],
-         'Product'   => $row['product'],
-         'ShippingCompany'   => $row['shipping_company'],
-         'PortOfDischarging'    => $row['port_of_discharging'],
-         'EstimateOfLoading'  => $row['estimate_time_of_loading'],
-         'TimeOfArrival'   => $row['time_of_arrival'],
-         'Containers'   => $row['containers']
+         'contract_no'  => $rows['contract_no'],
+         'product'   => $rows['product'],
+         'shipping_company'   => $rows['shipping_company'],
+         'port_of_discharging'    => $rows['port_of_discharging'],
+         'estimate_time_of_loading'  => $rows['estimate_time_of_loading'],
+         'time_of_arrival'   => $rows['time_of_arrival'],
+         'containers'   => $rows['containers']
         );
-        // dd($insert_data);
+        
        }
       }
 
@@ -62,6 +64,10 @@ class ImportExcelController extends Controller
      
      return back()->with('success', 'Excel Data Imported successfully.');
     }
-}
+
+
+    function export(){
+      return Excel::download(new DateExport, 'output.xlsx');
+    }
 }
 

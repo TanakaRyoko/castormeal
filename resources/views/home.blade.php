@@ -14,14 +14,14 @@
     <div class="container">
         <div class ="row" id="command">
                 <div class="col-md-6" >
-                    <form action = "{{ action('VesselController@add') }}">
+                    <form action = "{{ action('ImportExcelController@index') }}">
                 <input type="submit" id="button" value="本船情報登録" style="width:300px;height:100px" >
                 </form>
                 </div>
                 
             
             <div class="col-md-6" >
-                    <form action = "{{ action('VesselController@add') }}">
+                    <form action = "{{ action('ImportExcelController@index') }}">
                 <input type="submit" id="button" value="動静表更新" style="width:300px;height:100px" >
                 </form>
                 </div>
@@ -55,8 +55,8 @@
                 
             
             <div class="col-md-6" >
-                    <form action = "{{ action('VesselController@add') }}">
-                <input type="submit" id="button" value="業務進捗表入力" style="width:300px;height:100px" >
+                    <form action = "{{ action('ExportExcelController@index') }}">
+                <input type="submit" id="button" value="管理表出力" style="width:300px;height:100px" >
                 </form>
                 </div>
             
