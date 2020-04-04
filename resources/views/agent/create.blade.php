@@ -28,16 +28,11 @@
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name ="company_name" value="{{ old('company_name') }}">
                                     </div>
-                                
-                            </div>
-                            <br>
-                            
-                            <div class ="form-group row">
                                 <label class="col-md-1">担当者名</label>
                                     <div class="col-md-5">
                                         <input type="text" class="form-control" name ="staff" value="{{ old('staff') }}">
                                     </div>
-                                    <label class="col-md-1">e-mail</label>
+                                <label class="col-md-1">e-mail</label>
                                     <div class="col-md-5" >
                                         <input type="text" class="form-control" name="e-mail" value="{{old("e-mail")}}">
                                     </div>
@@ -46,6 +41,10 @@
                             <br>
                             
                             <div class ="form-group row">
+                                <label class="col-md-1">業者名</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name ="company_name" value="{{ old('company_name') }}">
+                                    </div>
                                 <label class="col-md-1">担当者名</label>
                                     <div class="col-md-5">
                                         <input type="text" class="form-control" name ="staff" value="{{ old('staff') }}">
@@ -59,6 +58,10 @@
                             <br>
     
                             <div class ="form-group row">
+                                <label class="col-md-1">業者名</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name ="company_name" value="{{ old('company_name') }}">
+                                    </div>
                                 <label class="col-md-1">担当者名</label>
                                     <div class="col-md-5">
                                         <input type="text" class="form-control" name ="staff" value="{{ old('staff') }}">
@@ -72,6 +75,10 @@
                             <br>
     
                             <div class ="form-group row">
+                                <label class="col-md-1">業者名</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name ="company_name" value="{{ old('company_name') }}">
+                                    </div>
                                 <label class="col-md-1">担当者名</label>
                                     <div class="col-md-5">
                                         <input type="text" class="form-control" name ="staff" value="{{ old('staff') }}">

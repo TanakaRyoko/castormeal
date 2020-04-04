@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomsAgentTable extends Migration
+class CreateCustomerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateCustomsAgentTable extends Migration
      */
     public function up()
     {
-        Schema::create('customs_agent', function (Blueprint $table) {
+        Schema::create('customer', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->text('company_name');
-            $table->text('staff_name');
-            $table->string('e-mail');
         });
     }
 
@@ -29,6 +26,6 @@ class CreateCustomsAgentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customs_agent');
+        Schema::dropIfExists('customer');
     }
 }

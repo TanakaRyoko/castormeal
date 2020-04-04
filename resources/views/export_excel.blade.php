@@ -25,6 +25,7 @@
   <br />
   <div class="container">
    <h3 align="center">Export Data to Excel in Laravel using Maatwebsite</h3><br />
+   <button id="square_btn" onClick="history.back()">戻る</button>
    <div align="center">
     <a href="{{ route('export_excel.excel') }}" class="btn btn-success">Export to Excel</a>
    </div>

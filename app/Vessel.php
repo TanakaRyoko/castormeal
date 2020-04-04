@@ -4,11 +4,10 @@ namespace App;
 
 use App\Vessel;
 use Illuminate\Database\Eloquent\Model;
-use Maatwebsite\Excel\Concerns\ToModel;
+// use Maatwebsite\Excel\Concerns\ToModel;
 
 
-
-class Vessel implements ToModel
+class Vessel extends Model
 {
     public function model()
     {

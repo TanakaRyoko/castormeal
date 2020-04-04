@@ -66,8 +66,6 @@ class ImportExcelController extends Controller
     }
 
 
-    function export(){
-      return Excel::download(new DateExport, 'output.xlsx');
-    }
+    
 }
 

@@ -20,8 +20,12 @@ Route::get('/', function () {
 
 Route::get('vessel/create', 'VesselController@add')->middleware('auth');
 Route::post('vessel/create', 'VesselController@add')->middleware('auth');
+Route::get('vessel/edit', 'VesselController@edit')->middleware('auth');
+Route::post('vessel/edit', 'VesselController@update')->middleware('auth');
+Route::get('vessel/delete', 'VesselController@delete')->middleware('auth');
+
 Route::get('agent/create', 'AgentController@add')->middleware('auth');
-Route::post('agent/create', 'AgentController@add')->middleware('auth');
+Route::post('agent/create', 'AgentController@create')->middleware('auth');
 
 Route::get('/import_excel', 'ImportExcelController@index');
 Route::post('/import_excel/import', 'ImportExcelController@import');

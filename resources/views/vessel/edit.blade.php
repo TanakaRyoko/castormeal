@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-12 mx-auto">
                 <body>
-                    <form action ="{{ action('VesselController@add') }}" method="post" enctype="multipart/form-data">
+                    <form action ="{{ action('VesselController@update') }}" method="post" enctype="multipart/form-data">
                         @if (count($errors) > 0 )
                             <ul>
                                 @foreach($errors -> all() as $e )
@@ -22,7 +22,7 @@
                         @endif
                         <h4>本船情報</h4>
                         <br>
-                        
+                        <button id="square_btn" onClick="history.back()">戻る</button>
                         <div class ="form-group row">
                             <label class="col-md-1">本船NO.</label>
                                 <div class="col-md-2">
@@ -30,15 +30,11 @@
                                 </div>
                             <label class="col-md-1">契約NO.</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" name ="contract_no" value="{{ old('contract_no') }}">
+                                    <input type="text" class="form-control" name ="contract_no" value="{{ $vessel_form->contract_no }}">
                                 </div>
                             <label class="col-md-1">商品名</label>
-                                <div class="col-md-2">
-                                    <select name="commodity">
-                                      @foreach(config('commodity') as $index => $name)
-                                        <option value="{{ $index }}" >{{$name}}</option>
-                                      @endforeach
-                                     </select>
+                               <div class="col-md-2">
+                                    <input type="text" class="form-control" name ="product" value="{{ $vessel_form->product }}">
                                 </div>
                         </div>
                         <br>
@@ -61,12 +57,8 @@
                                     <input type="date" class="form-control" name="bl_date" value="{{old("bl_date")}}">
                                 </div>
                             <label class="col-md-1" for="container">コンテナ数</label>
-                                <div class="col-md-2">
-                                    <select name="container">
-                                      @foreach(config('container') as $index => $name)
-                                        <option value="{{ $index }}" >{{$name}}</option>
-                                      @endforeach
-                                    </select>
+                                 <div class="col-md-2">
+                                    <input type="text" class="form-control" name ="containers" value="{{ $vessel_form->containers }}">
                                 </div>
                             <label class="col-md-1">数量（MT)</label>
                                 <div class="col-md-2">
@@ -74,11 +66,7 @@
                                 </div>
                             <label class="col-md-1">船社</label>
                                 <div class="col-md-2">
-                                    <select name="vessel_company">
-                                      @foreach(config('vessel_company') as $index => $name)
-                                        <option value="{{ $index }}" >{{$name}}</option>
-                                      @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" name ="shipping_company" value="{{ $vessel_form->shipping_company }}">
                                 </div>
                         </div>
                         <br>
@@ -86,15 +74,11 @@
                         <div class ="form-group row">
                             <label class="col-md-1" for="discharging_port">揚港</label>
                                 <div class="col-md-2">
-                                     <select name="discharging_port">
-                                      @foreach(config('discharging_port') as $index => $name)
-                                        <option value="{{ $index }}" >{{$name}}</option>
-                                      @endforeach
-                                     </select>
+                                    <input type="text" class="form-control" name ="port_of_discharging" value="{{ $vessel_form->port_of_discharging }}">
                                 </div>
                             <label class="col-md-1">入港日</label>
                                 <div class="col-md-2" for="arrival_date">
-                                    <input type="date" class="form-control" name="arrival_date" value="{{old("arrival_date")}}">
+                                    <input type="date" class="form-control" name="time_of_arrival" value="{{ $vessel_form->time_of_arrival }}">
                                 </div>
                         </div>
                         <br>
@@ -134,7 +118,7 @@
                                 </div>
                             
                             <div class="col-md-3">
-                                <input type="hidden" name="id" value="">
+                                 <input type="hidden" name="id" value="{{ $vessel_form->id }}">
                                 {{csrf_field()}}
                                 <input type="submit" class="btn btn-primary" value="更新">
                             </div>

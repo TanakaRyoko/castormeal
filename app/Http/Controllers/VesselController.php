@@ -3,23 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Vessel;
 
 class VesselController extends Controller
 {
     //
     public function add(){
-        return view('vessel.create');
+        return view('vessel.edit');
     }
 
     
      public function edit(Request $request)
         {
+            
             $vessels =Vessel::find($request->id);
             if(empty($vessels)){
                 abort(404);
             }
-            
-            return view('vessel.create',['vessel_form' => $vessels]);
+            dd($vessels);
+            return view('vessel.edit',['vessel_form' => $vessels]);
             
         }
 
@@ -31,28 +33,28 @@ class VesselController extends Controller
             
             //削除する
             $vessels->delete();
-            return redirect('timeschedules');
+            return redirect('import_excel');
         }
         
         public function update(Request $request)
         {
             
-            
+            dd($request);
             //Varidationを行う
-            $this->validate($request,TimeSchedule::$rules);
-            $timeschedules=TimeSchedule::find($request->id);
-            
-            $timeschedules_form=$request->all();
-            dd($timeschedules_form);
+            // $this->validate($request,TimeSchedule::$rules);
+            $vessels=Vessel::find($request->id);
+            dd($vessels);
+            $vessel_form = $request->all();
+            // dd($vessel_form);
             
             
             //フォームから送信されてきた_tokenを削除する
-            unset($timeschedules_form['_token']);
+            unset($vessel_form['_token']);
             
             //データベースに保存する
-            $timeschedules->fill($timeschedules_form->all());
-            $timeschedules->save();
-            return redirect('timeschedules');
+            $vessels->fill($vessel_form->all())->save();
+            // dd($vessel);
+            return redirect('import_excel');
         }
     
     

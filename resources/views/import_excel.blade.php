@@ -20,6 +20,7 @@
   <div class="container">
    <h3 align="center">Import Excel File in Laravel</h3>
     <br />
+    <button id="square_btn" onClick="history.back()">戻る</button>
    @if(count($errors) > 0)
     <div class="alert alert-danger">
      Upload Validation Error<br><br>
@@ -68,12 +69,14 @@
      <div class="table-responsive">
       <table class="table table-bordered table-striped">
        <tr>
+        <th>操　作</th>
         <th>契約№</th>
         <th>商品</th>
         <th>船社</th>
         <th>揚港</th>
         <th>出航日</th>
         <th>入港日</th>
+        <th>コンテナ数</th>
         <th>本船№</th>
         <th>台帳№</th>
         <th>数量</th>
@@ -87,12 +90,21 @@
        </tr>
        @foreach($data as $row)
        <tr>
+        <td>
+            <div>
+                <a href="{{ action('VesselController@edit',['id' => $row->id]) }}">編集</a>
+            </div>
+            <div>
+                <a href="{{ action('VesselController@delete', ['id' => $row->id]) }}">削除</a>
+            </div>
+        </td>
         <td>{{ $row->contract_no }}</td>
         <td>{{ $row->product }}</td>
         <td>{{ $row->shipping_company }}</td>
         <td>{{ $row->port_of_discharging }}</td>
         <td>{{ $row->estimate_time_of_loading }}</td>
         <td>{{ $row->time_of_arrival }}</td>
+        <td>{{ $row->containers }}</td>
         <td>{{ $row->vessel_no }}</td>
         <td>{{ $row->register_no }}</td>
         <td>{{ $row->mt }}</td>
