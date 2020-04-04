@@ -27,12 +27,12 @@ Route::get('vessel/delete', 'VesselController@delete')->middleware('auth');
 Route::get('agent/create', 'AgentController@add')->middleware('auth');
 Route::post('agent/create', 'AgentController@create')->middleware('auth');
 
-Route::get('/import_excel', 'ImportExcelController@index');
+Route::get('/excel', 'ImportExcelController@index');
 Route::post('/import_excel/import', 'ImportExcelController@import');
 Route::get('/export_excel', 'ImportExcelController@export');
 
 Route::get('/export_excel', 'ExportExcelController@index');
-Route::get('/export_excel/excel', 'ExportExcelController@excel')->name('export_excel.excel');
+Route::get('/export_excel/excel', 'ImportExcelController@export')->name('export_excel.excel');
 
 
 Auth::routes();

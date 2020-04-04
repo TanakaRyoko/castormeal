@@ -38,6 +38,10 @@
            <strong>{{ $message }}</strong>
    </div>
    @endif
+   <br>
+   <br>
+   
+   
    <form method="post" enctype="multipart/form-data" action="{{ url('/import_excel/import') }}">
     {{ csrf_field() }}
     <div class="form-group">
@@ -59,7 +63,11 @@
      </table>
     </div>
    </form>
+    <h3 align="center">Export Data to Excel in Laravel using Maatwebsite</h3><br />
    
+   <div align="center">
+    <a href="{{ route('export_excel.excel') }}" class="btn btn-success">Export to Excel</a>
+   </div>
    <br />
    <div class="panel panel-default">
     <div class="panel-heading">

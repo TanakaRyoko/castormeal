@@ -65,7 +65,40 @@ class ImportExcelController extends Controller
      return back()->with('success', 'Excel Data Imported successfully.');
     }
 
-
+    function export()
+    {
+     $vessel_data = DB::table('vessels')->get()->toArray();
+     $vessel_array[] = array('契約№', '商品名', '船社', '揚港','出航日', '入港日','コンテナ数','本船№','台帳№','数量','B/LNO.','金額','単価','レート','金利','日本円','バンクチャージ');
+     foreach($vessel_data as $data)
+     {
+      $vessel_array[] = array(
+       'contract_no'  => $data->contract_no,
+       'product'   => $data->product,
+       'shipping_company'    => $data->shipping_company,
+       'port_of_discharging'  => $data->port_of_discharging,
+       'estimate_time_of_loading'   => $data->estimate_time_of_loading,
+       'time_of_arrival'   => $data->time_of_arrival,
+       'containers'   => $data->containers,
+       'vessel_no'   => $data->vessel_no,
+       'register_no'   => $data->register_no,
+       'mt'   => $data->mt,
+       'bl_no'   => $data->bl_no,
+       'remmitance'   => $data->remmitance,
+       'unit_price'   => $data->unit_price,
+       'rate'   => $data->rate,
+       'interest_rates'   => $data->interest_rates,
+       'japanese_yen'   => $data->japanese_yen,
+       'bank_charge'   => $data->bank_charge
+      );
+      
+     }
+     Excel::create('Vessel Data', function($excel) use ($vessel_array){
+      $excel->setTitle('Vessel Data');
+      $excel->sheet('Veesel Data', function($sheet) use ($vessel_array){
+       $sheet->fromArray($vessel_array, null, 'A1', false, false);
+      });
+     })->download('xlsx');
+    }
     
 }
 
