@@ -4,23 +4,26 @@
 
 {{-- layout.blade.phoの@yield('title')にニュースの新規作成を埋め込む --}}
 @section('title','本船情報登録')
-@section('subtitle','本船情報登録')
+@section('subtitle','')
 
 {{-- layout.blade.phpの@yield('content')に以下のタグを埋め込む　--}}
 @section('content')
     <head>
   
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />-->
+  <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+  
+    
  </head>
  <body>
-  <br />
+  
   
   <div class="container">
-   <h3 align="center">Import Excel File in Laravel</h3>
-    <br />
+   
     <button id="square_btn" onClick="history.back()">戻る</button>
+    <br>
+    <br>
    @if(count($errors) > 0)
     <div class="alert alert-danger">
      Upload Validation Error<br><br>
@@ -30,6 +33,7 @@
       @endforeach
      </ul>
     </div>
+    
    @endif
 
    @if($message = Session::get('success'))
@@ -40,36 +44,53 @@
    @endif
    <br>
    <br>
-   
-   
-   <form method="post" enctype="multipart/form-data" action="{{ url('/import_excel/import') }}">
-    {{ csrf_field() }}
-    <div class="form-group">
-     <table class="table">
-      <tr>
-       <td width="40%" align="right"><label>ファイルを選択してください</label></td>
-       <td width="30">
-        <input type="file" name="select_file" />
-       </td>
-       <td width="30%" align="left">
-        <input type="submit" name="upload" class="btn btn-primary" value="アップロードする">
-       </td>
-      </tr>
-      <tr>
-       <td width="40%" align="right"></td>
-       <td width="30"><span class="text-muted">.xls, .xslx</span></td>
-       <td width="30%" align="left"></td>
-      </tr>
-     </table>
+   <div class="jumbotron">
+  
+      <h1>本船情報登録</h1>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <br>
+      <form method="post" enctype="multipart/form-data" action="{{ url('/import_excel/import') }}">
+        {{ csrf_field() }}
+        <div class="form-group">
+         <table class="table">
+          <tr>
+           <th width="40%" align="right"><label>ファイルを選択してください</label></th>
+           <th width="30">
+            <input type="file" name="select_file" />
+           </th>
+           <th width="30%" align="left">
+            <input type="submit" name="upload" class="btn btn-outline-success" value="Excel Import">
+           </th>
+          </tr>
+          <tr>
+           <td width="40%" align="right"></td>
+           <td width="30"><span class="text-muted">.xls, .xslx</span></td>
+           <td width="30%" align="left"></td>
+          </tr>
+         </table>
+        </div>
+       </form>
+      <div class="form-group">
+       <table class="table">
+       <tr>
+        <td width=30% align=left></td>
+        <td width="40%" align="right"><label>データをExportする</label></td><br />
+        <td>
+        <!--<div align="right">-->
+         <a href="{{ route('export_excel.excel') }}" class="btn btn-outline-success">Export to Excel</a>
+        </td>
+       </tr>
+       </table>
+      </div>
     </div>
-   </form>
-    <h3 align="center">Export Data to Excel in Laravel using Maatwebsite</h3><br />
+ 
+ 
    
-   <div align="center">
-    <a href="{{ route('export_excel.excel') }}" class="btn btn-success">Export to Excel</a>
-   </div>
    <br />
+   <div class="listcontainer">
+   
    <div class="panel panel-default">
+    
     <div class="panel-heading">
      <h3 class="panel-title">本船情報</h3>
     </div>
@@ -82,7 +103,9 @@
         <th>商品</th>
         <th>船社</th>
         <th>揚港</th>
-        <th>出航日</th>
+        <th>出航日予定日</th>
+        <th>本船名</th>
+        <th>B/L DATE</th>
         <th>入港日</th>
         <th>コンテナ数</th>
         <th>本船№</th>
@@ -111,6 +134,8 @@
         <td>{{ $row->shipping_company }}</td>
         <td>{{ $row->port_of_discharging }}</td>
         <td>{{ $row->estimate_time_of_loading }}</td>
+        <td>{{ $row->name_of_vessel }}</td>
+        <td>{{ $row->bl_date }}</td>
         <td>{{ $row->time_of_arrival }}</td>
         <td>{{ $row->containers }}</td>
         <td>{{ $row->vessel_no }}</td>
@@ -128,10 +153,10 @@
       </table>
      </div>
     </div>
+    </div>
    </div>
-  </div>
  </body>
-</html>
+
 @endsection
 
 

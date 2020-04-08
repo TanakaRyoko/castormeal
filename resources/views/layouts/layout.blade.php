@@ -30,10 +30,11 @@
         <link href="{{ secure_asset('css/a.css') }}" rel="stylesheet">
     </head>
     <body>
+        
         <div id="app">
             {{-- 画面上部に表示するナビゲーションバーです。 --}}
             <nav class="navbar-expand-md navbar-dark navbar-laravel">
-                <div class="container">
+                <div class="container" id="nav">
                     <a class="navbar-brand" href="{{ url('/')}}">
                         {{ config('app.name','Laravel') }}
                     </a>
@@ -45,7 +46,7 @@
                         
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
-                        <h2>@yield('subtitle')</h2> 
+                        <h3>@yield('subtitle')</h3> 
                             
                         </ul>
                         
@@ -82,6 +83,7 @@
                         </ul>
                     </div>
                 </div>
+                </div>
             </nav> 
             {{-- ここまでナビゲーションバー --}}
             
@@ -90,5 +92,7 @@
                 @yield('content')
             </main>
         </div>
+       
+        
     </body>
 </html>

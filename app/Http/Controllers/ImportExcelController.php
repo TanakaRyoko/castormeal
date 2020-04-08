@@ -45,15 +45,16 @@ class ImportExcelController extends Controller
          foreach($data as $rows){
         
         $insert_data[] = array(
-         'contract_no'  => $rows['contract_no'],
-         'product'   => $rows['product'],
-         'shipping_company'   => $rows['shipping_company'],
-         'port_of_discharging'    => $rows['port_of_discharging'],
-         'estimate_time_of_loading'  => $rows['estimate_time_of_loading'],
-         'time_of_arrival'   => $rows['time_of_arrival'],
-         'containers'   => $rows['containers']
+         'contract_no'  => $rows['契約№'],
+         'product'   => $rows['商品'],
+         'shipping_company'   => $rows['船社'],
+         'port_of_discharging'    => $rows['揚港'],
+         'estimate_time_of_loading'  => $rows['出航予定日'],
+         'time_of_arrival'   => $rows['入港日'],
+         'containers'   => $rows['コンテナ数']    
         );
         
+        // ↑　'データベースのカラム名'　=> $row['エクセル一行目の項目名']
        }
       }
 
@@ -68,27 +69,28 @@ class ImportExcelController extends Controller
     function export()
     {
      $vessel_data = DB::table('vessels')->get()->toArray();
-     $vessel_array[] = array('契約№', '商品名', '船社', '揚港','出航日', '入港日','コンテナ数','本船№','台帳№','数量','B/LNO.','金額','単価','レート','金利','日本円','バンクチャージ');
+     $vessel_array[] = array('契約№', '商品名', '船社', '揚港','出航日','B/L DATE', '入港日','コンテナ数','本船№','台帳№','数量','B/LNO.','金額','単価','レート','金利','日本円','バンクチャージ');
      foreach($vessel_data as $data)
      {
       $vessel_array[] = array(
-       'contract_no'  => $data->contract_no,
-       'product'   => $data->product,
-       'shipping_company'    => $data->shipping_company,
-       'port_of_discharging'  => $data->port_of_discharging,
-       'estimate_time_of_loading'   => $data->estimate_time_of_loading,
-       'time_of_arrival'   => $data->time_of_arrival,
-       'containers'   => $data->containers,
-       'vessel_no'   => $data->vessel_no,
-       'register_no'   => $data->register_no,
-       'mt'   => $data->mt,
-       'bl_no'   => $data->bl_no,
-       'remmitance'   => $data->remmitance,
-       'unit_price'   => $data->unit_price,
-       'rate'   => $data->rate,
-       'interest_rates'   => $data->interest_rates,
-       'japanese_yen'   => $data->japanese_yen,
-       'bank_charge'   => $data->bank_charge
+       '契約№'  => $data->contract_no,
+       '商品名'   => $data->product,
+       '船社'    => $data->shipping_company,
+       '揚港'  => $data->port_of_discharging,
+       '出航予定日'   => $data->estimate_time_of_loading,
+       'B/L DATE' => $data->bl_date,
+       '入港日'   => $data->time_of_arrival,
+       'コンテナ数'   => $data->containers,
+       '本船№'   => $data->vessel_no,
+       '台帳№'   => $data->register_no,
+       'トン数'   => $data->mt,
+       'B/L NO.'   => $data->bl_no,
+       '外貨額'   => $data->remmitance,
+       '単価'   => $data->unit_price,
+       'レート'   => $data->rate,
+       '金利'   => $data->interest_rates,
+       '日本円'   => $data->japanese_yen,
+       'バンクチャージ'   => $data->bank_charge
       );
       
      }

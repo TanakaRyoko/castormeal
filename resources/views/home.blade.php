@@ -7,11 +7,11 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 <!--public/css/menu.cssを呼び出す-->
-    
-    <h1>コンテナ船管理システム</h1>
+  
+    <!--<h3>コンテナ船管理</h3>-->
     <br>
     <br>
-    <div class="container">
+    <div class="container" id="menu">
         <div class ="row" id="command">
                 <div class="col-md-6" >
                     <form action = "{{ action('ImportExcelController@index') }}">
@@ -21,46 +21,47 @@
                 
             
             <div class="col-md-6" >
+                    <form action = "{{ action('ReportController@index') }}">
+                <input type="submit" id="button" value="メーカーエラー" style="width:300px;height:100px" >
+                </form>
+                </div>
+            
+        </div> 
+        <br>
+        <br>
+        <div class ="row" id="command">
+                <div class="col-md-6" >
+                    <form action = "{{ action('VesselController@add') }}">
+                <input type="submit" id="button" value="ｘｘｘｘｘｘ" style="width:300px;height:100px" >
+                </form>
+                </div>
+                
+            
+            <div class="col-md-6" >
+                    <form action = "{{ action('VesselController@add') }}">
+                <input type="submit" id="button" value="ｘｘｘｘｘｘ" style="width:300px;height:100px" >
+                </form>
+                </div>
+            
+        </div> 
+        <br>
+        <br>
+        <div class ="row" id="command">
+                <div class="col-md-6" >
+                    <form action = "{{ action('VesselController@add') }}">
+                <input type="submit" id="button" value="ｘｘｘｘｘｘ" style="width:300px;height:100px" >
+                </form>
+                </div>
+                
+            
+            <div class="col-md-6" >
                     <form action = "{{ action('ImportExcelController@index') }}">
-                <input type="submit" id="button" value="動静表更新" style="width:300px;height:100px" >
-                </form>
-                </div>
-            
-        </div> 
-        <br>
-        <br>
-        <div class ="row" id="command">
-                <div class="col-md-6" >
-                    <form action = "{{ action('VesselController@add') }}">
-                <input type="submit" id="button" value="通関注文書作成" style="width:300px;height:100px" >
-                </form>
-                </div>
-                
-            
-            <div class="col-md-6" >
-                    <form action = "{{ action('VesselController@add') }}">
-                <input type="submit" id="button" value="保険申込書作成" style="width:300px;height:100px" >
-                </form>
-                </div>
-            
-        </div> 
-        <br>
-        <br>
-        <div class ="row" id="command">
-                <div class="col-md-6" >
-                    <form action = "{{ action('VesselController@add') }}">
-                <input type="submit" id="button" value="保証票作成" style="width:300px;height:100px" >
-                </form>
-                </div>
-                
-            
-            <div class="col-md-6" >
-                    <form action = "{{ action('ExportExcelController@index') }}">
                 <input type="submit" id="button" value="管理表出力" style="width:300px;height:100px" >
                 </form>
                 </div>
             
         </div> 
-        </div>        
+        </div> 
     </div>
+<script src="{{ asset('/js/a.js') }}"></script>   
 @endsection

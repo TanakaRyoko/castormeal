@@ -20,7 +20,7 @@ class VesselController extends Controller
             if(empty($vessels)){
                 abort(404);
             }
-            dd($vessels);
+            // dd($vessels);
             return view('vessel.edit',['vessel_form' => $vessels]);
             
         }
@@ -33,17 +33,17 @@ class VesselController extends Controller
             
             //削除する
             $vessels->delete();
-            return redirect('import_excel');
+            return redirect('/excel');
         }
         
         public function update(Request $request)
         {
             
-            dd($request);
+            // dd($request);
             //Varidationを行う
             // $this->validate($request,TimeSchedule::$rules);
             $vessels=Vessel::find($request->id);
-            dd($vessels);
+            // dd($vessels);
             $vessel_form = $request->all();
             // dd($vessel_form);
             
@@ -52,9 +52,9 @@ class VesselController extends Controller
             unset($vessel_form['_token']);
             
             //データベースに保存する
-            $vessels->fill($vessel_form->all())->save();
-            // dd($vessel);
-            return redirect('import_excel');
+            $vessels->fill($vessel_form)->save();
+            // dd($vessels);
+            return redirect('/excel');
         }
     
     

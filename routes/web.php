@@ -31,8 +31,12 @@ Route::get('/excel', 'ImportExcelController@index');
 Route::post('/import_excel/import', 'ImportExcelController@import');
 Route::get('/export_excel', 'ImportExcelController@export');
 
-Route::get('/export_excel', 'ExportExcelController@index');
 Route::get('/export_excel/excel', 'ImportExcelController@export')->name('export_excel.excel');
+
+Route::get('/report', 'ReportController@index');
+Route::post('/report/import', 'ReportController@import');
+Route::get('/report/export', 'ReportController@export')->name('report.export');
+Route::get('/report/delete', 'ReportController@delete')->name('report.delete');
 
 
 Auth::routes();
