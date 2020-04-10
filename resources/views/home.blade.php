@@ -31,15 +31,15 @@
         <br>
         <div class ="row" id="command">
                 <div class="col-md-6" >
-                    <form action = "{{ action('VesselController@add') }}">
-                <input type="submit" id="button" value="ｘｘｘｘｘｘ" style="width:300px;height:100px" >
+                    <form action = "{{ action('AgentController@add') }}">
+                <input type="submit" id="button" value="通関業者登録" style="width:300px;height:100px" >
                 </form>
                 </div>
                 
             
             <div class="col-md-6" >
-                    <form action = "{{ action('VesselController@add') }}">
-                <input type="submit" id="button" value="ｘｘｘｘｘｘ" style="width:300px;height:100px" >
+                    <form action = "{{ action('ProductController@index') }}">
+                <input type="submit" id="button" value="商品登録" style="width:300px;height:100px" >
                 </form>
                 </div>
             
@@ -48,8 +48,8 @@
         <br>
         <div class ="row" id="command">
                 <div class="col-md-6" >
-                    <form action = "{{ action('VesselController@add') }}">
-                <input type="submit" id="button" value="ｘｘｘｘｘｘ" style="width:300px;height:100px" >
+                    <form action = "{{ action('ConsigneeController@index') }}">
+                <input type="submit" id="button" value="メーカー登録" style="width:300px;height:100px" >
                 </form>
                 </div>
                 

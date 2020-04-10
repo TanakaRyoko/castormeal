@@ -15,7 +15,7 @@ class CreateConsigneesTable extends Migration
     {
         Schema::create('consignees', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('consignee_code');
+            $table->text('consignee_code');
             $table->text('consignee');
             $table->timestamps();
         });

@@ -8,7 +8,11 @@
 
 {{-- layout.blade.phpの@yield('content')に以下のタグを埋め込む　--}}
 @section('content')
+<br>
+<br>
+<br>
     <div class="container">
+        <div class="listcontainer">
         <div class="row">
             <div class="col-md-12 mx-auto">
                 <body>
@@ -20,20 +24,21 @@
                                 @endforeach
                             </ul>
                         @endif
-                        <h4>通関業者</h4>
-                        <br>
+                        
+                        
+                        
                         
                             <div class ="form-group row">
                                 <label class="col-md-1">業者名</label>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <input type="text" class="form-control" name ="company_name" value="{{ old('company_name') }}">
                                     </div>
                                 <label class="col-md-1">担当者名</label>
-                                    <div class="col-md-5">
+                                    <div class="col-md-3">
                                         <input type="text" class="form-control" name ="staff" value="{{ old('staff') }}">
                                     </div>
                                 <label class="col-md-1">e-mail</label>
-                                    <div class="col-md-5" >
+                                    <div class="col-md-3" >
                                         <input type="text" class="form-control" name="e-mail" value="{{old("e-mail")}}">
                                     </div>
                                 
@@ -42,15 +47,15 @@
                             
                             <div class ="form-group row">
                                 <label class="col-md-1">業者名</label>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <input type="text" class="form-control" name ="company_name" value="{{ old('company_name') }}">
                                     </div>
                                 <label class="col-md-1">担当者名</label>
-                                    <div class="col-md-5">
+                                    <div class="col-md-3">
                                         <input type="text" class="form-control" name ="staff" value="{{ old('staff') }}">
                                     </div>
                                     <label class="col-md-1">e-mail</label>
-                                    <div class="col-md-5" >
+                                    <div class="col-md-3" >
                                         <input type="text" class="form-control" name="e-mail" value="{{old("e-mail")}}">
                                     </div>
                                 
@@ -59,15 +64,15 @@
     
                             <div class ="form-group row">
                                 <label class="col-md-1">業者名</label>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <input type="text" class="form-control" name ="company_name" value="{{ old('company_name') }}">
                                     </div>
                                 <label class="col-md-1">担当者名</label>
-                                    <div class="col-md-5">
+                                    <div class="col-md-3">
                                         <input type="text" class="form-control" name ="staff" value="{{ old('staff') }}">
                                     </div>
                                     <label class="col-md-1">e-mail</label>
-                                    <div class="col-md-5" >
+                                    <div class="col-md-3" >
                                         <input type="text" class="form-control" name="e-mail" value="{{old("e-mail")}}">
                                     </div>
                                 
@@ -76,15 +81,15 @@
     
                             <div class ="form-group row">
                                 <label class="col-md-1">業者名</label>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <input type="text" class="form-control" name ="company_name" value="{{ old('company_name') }}">
                                     </div>
                                 <label class="col-md-1">担当者名</label>
-                                    <div class="col-md-5">
+                                    <div class="col-md-3">
                                         <input type="text" class="form-control" name ="staff" value="{{ old('staff') }}">
                                     </div>
                                     <label class="col-md-1">e-mail</label>
-                                    <div class="col-md-5" >
+                                    <div class="col-md-3" >
                                         <input type="text" class="form-control" name="e-mail" value="{{old("e-mail")}}">
                                     </div>
                                 
@@ -103,4 +108,5 @@
             </div>
         </div>
     </div>
+</div>    
 @endsection

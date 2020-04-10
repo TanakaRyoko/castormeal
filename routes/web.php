@@ -27,6 +27,17 @@ Route::get('vessel/delete', 'VesselController@delete')->middleware('auth');
 Route::get('agent/create', 'AgentController@add')->middleware('auth');
 Route::post('agent/create', 'AgentController@create')->middleware('auth');
 
+Route::get('product/create', 'ProductController@add')->middleware('auth');
+Route::post('product/create', 'ProductController@create')->middleware('auth');
+Route::get('product/index', 'ProductController@index')->middleware('auth');
+Route::get('product/delete', 'ProductController@delete')->middleware('auth');
+
+Route::get('consignee/create', 'ConsigneeController@add')->middleware('auth');
+Route::post('consignee/create', 'ConsigneeController@create')->middleware('auth');
+Route::get('consignee/index', 'ConsigneeController@index')->middleware('auth');
+Route::get('consignee/delete', 'ConsigneeController@delete')->middleware('auth');
+
+
 Route::get('/excel', 'ImportExcelController@index');
 Route::post('/import_excel/import', 'ImportExcelController@import');
 Route::get('/export_excel', 'ImportExcelController@export');

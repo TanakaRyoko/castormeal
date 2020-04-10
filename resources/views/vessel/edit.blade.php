@@ -12,6 +12,7 @@
         <div class="row">
             <div class="col-md-12 mx-auto">
                 <body>
+                    <div class="listcontainer">
                     <form action ="{{ action('VesselController@update') }}" method="post" enctype="multipart/form-data">
                         @if (count($errors) > 0 )
                             <ul>
@@ -139,8 +140,9 @@
                                 {{csrf_field()}}
                                 <input type="submit" class="btn btn-primary" value="更新">
                             </div>
-                        </div>   
-                   </form>
+                        </div> 
+                        </form>
+                </div>
                 </div>
             </body>
 </div>

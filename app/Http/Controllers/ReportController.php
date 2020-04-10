@@ -36,7 +36,7 @@ class ReportController extends Controller
       
      $data->toArray();
       
-        
+     // dd($data);   
         
       // foreach($data as $datas)
       // {
@@ -81,7 +81,15 @@ class ReportController extends Controller
       {
        DB::table('reports')->insert($insert_data);
       }
+     // dd($insert_data);
      
+     $report_data = DB::table('reports')
+       ->rightJoin('consignees','reports.consignee_code','=','consignees.consignee_code')
+       ->rightJoin('products','reports.product_code','=','products.product_code')
+       ->get();
+       // ->update(['consignee'=>'荷受人','product'=>'品名名称']);
+       dd($report_data);
+       
      return back()->with('success', 'Excel Data Imported successfully.');
     }
 
@@ -150,7 +158,7 @@ class ReportController extends Controller
      Excel::create('Report Data', function($excel) use ($report_array){
       $excel->setTitle('Report Data');
       $excel->sheet('Report Data', function($sheet) use ($report_array){
-       $sheet->fromArray($report_array, null, 'A1', false, false)
+       $sheet->fromArray($report_array, null, 'A1',false,false)
        ->setWidth([
                     'A' =>10,
                     'B' =>10,

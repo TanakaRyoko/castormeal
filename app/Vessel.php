@@ -22,7 +22,7 @@ class Vessel extends Model
         'vessel_no',
         'register_no',
         'mt',
-        'bl_no.',
+        'bl_no',
         'remmitance',
         'unit_price',
         'rate',
@@ -31,17 +31,16 @@ class Vessel extends Model
         'bank_charge'
     ];
     
-    public function model()
+    //belongsTo設定(product)
+    public function product()
     {
-        // return new Vessel([
+        return $this->belongsTo('App\Product');
+    }
     
-        // 'contract_no'=>$row['0'],
-        // 'product'=>$row['1'],
-        // 'shipping_company'=>$row['2'],
-        // 'estimate_time_of_loading'=>$row['3'],
-        // 'time_of_arrival'=>$row['4'],
-        // 'containers'=>$row['5'],
-        // ]);
+    //belongsTo設定(consignee)
+    public function consignee()
+    {
+        return $this->belongsTo('App\Consignee');
     }
     
      

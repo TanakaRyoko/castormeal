@@ -18,11 +18,11 @@ class CreateReportsTable extends Migration
             
             $table->string('error_no');
             $table->string('order_no');
-            $table->string('consignee_code');
-            $table->string('consignee')->nullable();
+            $table->text('consignee_code');
+            $table->text('consignee')->nullable();
             $table->string('hub_code')->nullable();
             $table->text('hub_name')->nullable();
-            $table->string('product_code');
+            $table->integer('product_code');
             $table->text('product')->nullable();
             $table->string('yoryo')->nullable();
             $table->string('mt')->nullable();
