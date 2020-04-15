@@ -24,10 +24,11 @@ class Consignee extends Model
     // //primary keyの変更
     // protected $primaryKey = "consignee_code";
     
-    // //hasManyの設定
-    // public function vessels()
-    // {
-    //     return $this->hasMany('App\Vessel');
-    // }
-    //
+    //hasManyの設定
+    
+    public function report()
+    {
+        return $this->belongsTo('App\Report');
+    }
+    
 }

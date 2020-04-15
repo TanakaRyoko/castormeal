@@ -25,12 +25,13 @@ class Product extends Model
     // //primary keyの変更
     // // protected $primaryKey = "product_code";
     
-    // //hasManyの設定
-    // public function vessels()
-    // {
-    //     return $this->hasMany('App\Vessel');
-    // }
+   
     
     
     //
+    
+    public function product()
+    {
+        return $this->belongsTo('App\Product');
+    }
 }

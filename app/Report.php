@@ -35,4 +35,17 @@ class Report extends Model
            'error_message'
         
     ];
+    
+    public function consignees()
+    {
+        return $this->hasMany('App\Consignee');
+    }
+    
+     //hasManyの設定
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
+    
+    
 }

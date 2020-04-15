@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Vessel;
+use TCPDF;
+use TCPDF_FONTS;
 
 class VesselController extends Controller
 {
@@ -55,6 +57,28 @@ class VesselController extends Controller
             $vessels->fill($vessel_form)->save();
             // dd($vessels);
             return redirect('/excel');
+        }
+        
+        public function insurance(Request $request)
+        {
+            $insurance = Vessel::find($request->id);
+            // dd($insurance);
+            return view('insurance',['insurance_form' => $insurance]);
+             
+        }
+        
+        public function application(Request $request)
+        {
+            $application= Vessel::find($request->id);
+            return view('application',['application_form' => $application]);
+           
+        }
+        
+        public function invoice(Request $request)
+        {
+            $invoice= Vessel::find($request->id);
+            return view('invoice',['invoice_form' => $invoice]);
+           
         }
     
     

@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use DB;
 use Excel;
 
-use App\Model\Report;
+use App\Report;
+
+
+
 class ReportController extends Controller
 {
     function index()
@@ -27,22 +30,13 @@ class ReportController extends Controller
     $path = $request->file('select_file')->getRealPath();
 
     $data = Excel::load($path)->get();
-    
-    
-      
-      
+    // dd($data);
      if($data->count() > 0)
      {
       
      $data->toArray();
-      
-     // dd($data);   
-        
-      // foreach($data as $datas)
-      // {
-      
-        
-         foreach($data as $rows){
+      // dd($data);
+       foreach($data as $rows){
         
         $insert_data[] = array(
          'error_no'  => $rows['エラーＮＯ'],
@@ -87,8 +81,62 @@ class ReportController extends Controller
        ->rightJoin('consignees','reports.consignee_code','=','consignees.consignee_code')
        ->rightJoin('products','reports.product_code','=','products.product_code')
        ->get();
-       // ->update(['consignee'=>'荷受人','product'=>'品名名称']);
-       dd($report_data);
+       
+       // dd($report_data);
+       
+       
+      $report_data->toArray();
+      
+       foreach($report_data as $rows){
+        dd($rows);
+        Report::update([
+             'error_no'  => $rows['error_no'],
+         ]);
+        $insert_report[] = array(
+         'error_no'  => $rows['error_no'],
+         'order_no'  => $rows['指図ＮＯ'],
+         'consignee_code'  => $rows['荷受人'],
+         'consignee'  => $rows['荷受人名称'],
+         'hub_code'  => $rows['拠点コード'],
+         'hub_name'  => $rows['拠点名称'],
+         'product_code'   => $rows['品名コード'],
+         'product'   => $rows['品名名称'],
+         'yoryo'   => $rows['容量'], 
+         'mt'   => $rows['出荷数量'], 
+         'supply_unit_price'   => $rows['供給単価'], 
+         'supply_price'   => $rows['供給金額'], 
+         'supply_month'   => $rows['供給限月'], 
+         'ship_date'   => $rows['出荷年月日'], 
+         'supply_delivery_condition'   => $rows['供給受渡条件'], 
+         'recieving_delivery_condition' => $rows['受入受渡条件'], 
+         'jibetu'   => $rows['次別'], 
+         'shupou_no'   => $rows['出報№'], 
+         'zaikokubun'   => $rows['在庫区分'], 
+         'vessel'   => $rows['本船'], 
+         'yamamoto'   => $rows['山元'],
+         'shupou_uketuke_date'   => $rows['出報受付年月日'],
+         'setuzoku_code'   => $rows['接続元コード'], 
+         'error_code'   => $rows['エラーコード１'], 
+         'error_message'   => $rows['エラーメッセージ１'] 
+         
+        );
+        
+        // ↑　'データベースのカラム名'　=> $row['エクセル一行目の項目名']
+       }
+       DB::table('reports')->insert($insert_report);
+       
+       // dd($report_data);
+       
+      // DB::table('reports')
+            
+      //       ->update(['consignee' => consignee],
+      //                ['product' => product]
+      //  );
+                      
+       // $report_datas = $report_data->toArray();
+       
+       // dd($report_datas);
+      
        
      return back()->with('success', 'Excel Data Imported successfully.');
     }
@@ -187,6 +235,19 @@ class ReportController extends Controller
             // $report->delete();
             return redirect('/report');
         }
+        
+   public function insurance(){
+    return view('insurance');
+   }
+   
+   public function application(){
+    return view('application');
+   }
+   
+   public function invoice(){
+    return view('invoice');
+   }
+   
     
 }
 

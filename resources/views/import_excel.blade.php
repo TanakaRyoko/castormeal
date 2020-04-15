@@ -99,6 +99,7 @@
       <table class="table table-bordered table-striped">
        <tr>
         <th>操　作</th>
+        <th>書　類</th>
         <th>契約№</th>
         <th>商品</th>
         <th>船社</th>
@@ -127,6 +128,17 @@
             </div>
             <div>
                 <a href="{{ action('VesselController@delete', ['id' => $row->id]) }}">削除</a>
+            </div>
+        </td>
+        <td>
+            <div>
+                <a href="{{ action('VesselController@insurance', ['id' => $row->id]) }}">保険</a>
+            </div>
+            <div>
+                <a href="{{ action('VesselController@application', ['id' => $row->id]) }}">通関</a>
+            </div>
+            <div>
+                <a href="{{ action('VesselController@invoice', ['id' => $row->id]) }}">原価</a>
             </div>
         </td>
         <td>{{ $row->contract_no }}</td>

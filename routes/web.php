@@ -49,6 +49,9 @@ Route::post('/report/import', 'ReportController@import');
 Route::get('/report/export', 'ReportController@export')->name('report.export');
 Route::get('/report/delete', 'ReportController@delete')->name('report.delete');
 
+Route::get('/insurance','VesselController@insurance');
+Route::get('/application','VesselController@application');
+Route::get('/invoice','VesselController@invoice');
 
 Auth::routes();
 
