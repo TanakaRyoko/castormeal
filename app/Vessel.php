@@ -31,17 +31,17 @@ class Vessel extends Model
         'bank_charge'
     ];
     
-    //belongsTo設定(product)
-    public function product()
-    {
-        return $this->belongsTo('App\Product');
-    }
+    // //belongsTo設定(product)
+    // public function product()
+    // {
+    //     return $this->belongsTo('App\Product');
+    // }
     
-    //belongsTo設定(consignee)
-    public function consignee()
-    {
-        return $this->belongsTo('App\Consignee');
-    }
+    // //belongsTo設定(consignee)
+    // public function consignee()
+    // {
+    //     return $this->belongsTo('App\Consignee');
+    // }
     
      
 }

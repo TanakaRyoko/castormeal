@@ -77,7 +77,8 @@
         <td width="40%" align="right"><label>データをExportする</label></td><br />
         <td>
         <!--<div align="right">-->
-         <a href="{{ route('export_excel.excel') }}" class="btn btn-outline-success">Export to Excel</a>
+        <!--<form method="post" enctype="multipart/form-data" action="{{ url('/import_excel/import') }}">-->
+         <a href="{{ route('vessel.export') }}" class="btn btn-outline-success">Export to Excel</a>
         </td>
        </tr>
        </table>

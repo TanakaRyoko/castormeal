@@ -12,9 +12,10 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "maatwebsite/excel": "~3.1.19",
+        "maatwebsite/excel": "^3.1.19",
         "phpoffice/phpspreadsheet": "^1.11",
-        "tecnickcom/tcpdf": "^6.3"
+        "tecnickcom/tcpdf": "^6.3",
+        "ext-gd": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
