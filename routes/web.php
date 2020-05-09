@@ -14,7 +14,7 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 
@@ -39,18 +39,18 @@ Route::get('consignee/delete', 'ConsigneeController@delete')->middleware('auth')
 
 
 Route::get('/excel', 'ImportExcelController@index');
-Route::post('/import_excel/import', 'VesselController@import');
-Route::get('/export_excel', 'VesselController@export')->name('vessel.export');
+Route::post('/import_excel/import', 'VesselController@import')->middleware('auth');
+Route::get('/export_excel', 'VesselController@export')->name('vessel.export')->middleware('auth');
 
 Route::get('/report', 'ReportController@index');
-Route::post('/report/import', 'ReportController@import');
-Route::get('/report/export', 'ReportController@export')->name('report.export');
-Route::get('/report/delete', 'ReportController@delete')->name('report.delete');
+Route::post('/report/import', 'ReportController@import')->middleware('auth');
+Route::get('/report/export', 'ReportController@export')->name('report.export')->middleware('auth');
+Route::get('/report/delete', 'ReportController@delete')->name('report.delete')->middleware('auth');
 
-Route::get('/insurance','VesselController@insurance');
-Route::get('/application','VesselController@application');
-Route::get('/invoice','VesselController@invoice');
+Route::get('/insurance','VesselController@insurance')->middleware('auth');
+Route::get('/application','VesselController@application')->middleware('auth');
+Route::get('/invoice','VesselController@invoice')->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
