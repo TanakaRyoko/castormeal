@@ -39,10 +39,8 @@ Route::get('consignee/delete', 'ConsigneeController@delete')->middleware('auth')
 
 
 Route::get('/excel', 'ImportExcelController@index');
-Route::post('/import_excel/import', 'ImportExcelController@import');
-Route::get('/export_excel', 'ImportExcelController@export');
-
-Route::get('/export_excel/excel', 'ImportExcelController@export')->name('export_excel.excel');
+Route::post('/import_excel/import', 'VesselController@import');
+Route::get('/export_excel', 'VesselController@export')->name('vessel.export');
 
 Route::get('/report', 'ReportController@index');
 Route::post('/report/import', 'ReportController@import');

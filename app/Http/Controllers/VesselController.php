@@ -4,12 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Vessel;
-use TCPDF;
-use TCPDF_FONTS;
+use App\Imports\VesselImport;
+use App\Exports\VesselExport;
+use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class VesselController extends Controller
 {
     //
+    
+   function import(Request $request)
+  {
+    $this->validate($request, [
+      'select_file'  => 'required|mimes:xls,xlsx'
+    ]);
+
+    Excel::import(new VesselImport, $request->file('select_file'));
+
+    return back()->with('success', 'Excel Data Imported successfully.');
+  }
+
+  function export()
+  {
+    return Excel::download(new VesselExport, 'reports.xlsx');
+  } 
+    
+  
     public function add(){
         return view('vessel.edit');
     }

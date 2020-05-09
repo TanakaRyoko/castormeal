@@ -2,252 +2,68 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use DB;
-use Excel;
-
+use Illuminate\Http\Request;
 use App\Report;
-
-
+use App\Imports\ReportsImport;
+use App\Exports\ReportsExport;
+use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
 {
-    function index()
-    {
-     $data = DB::table('reports')->orderBy('error_no', 'ASC')->get();
-     return view('report_excel', compact('data'));
-     
-    }
-    
-    
+  function index()
+  {
+    $data = DB::table('reports')->orderBy('error_no', 'ASC')->get();
+    return view('report_excel', compact('data'));
+  }
 
-    function import(Request $request)
-    {
+  function import(Request $request)
+  {
     $this->validate($request, [
       'select_file'  => 'required|mimes:xls,xlsx'
     ]);
 
-    $path = $request->file('select_file')->getRealPath();
+    Excel::import(new ReportsImport, $request->file('select_file'));
 
-    $data = Excel::load($path)->get();
-    // dd($data);
-     if($data->count() > 0)
-     {
-      
-     $data->toArray();
-      // dd($data);
-       foreach($data as $rows){
-        
-        $insert_data[] = array(
-         'error_no'  => $rows['エラーＮＯ'],
-         'order_no'  => $rows['指図ＮＯ'],
-         'consignee_code'  => $rows['荷受人'],
-         'consignee'  => $rows['荷受人名称'],
-         'hub_code'  => $rows['拠点コード'],
-         'hub_name'  => $rows['拠点名称'],
-         'product_code'   => $rows['品名コード'],
-         'product'   => $rows['品名名称'],
-         'yoryo'   => $rows['容量'], 
-         'mt'   => $rows['出荷数量'], 
-         'supply_unit_price'   => $rows['供給単価'], 
-         'supply_price'   => $rows['供給金額'], 
-         'supply_month'   => $rows['供給限月'], 
-         'ship_date'   => $rows['出荷年月日'], 
-         'supply_delivery_condition'   => $rows['供給受渡条件'], 
-         'recieving_delivery_condition' => $rows['受入受渡条件'], 
-         'jibetu'   => $rows['次別'], 
-         'shupou_no'   => $rows['出報№'], 
-         'zaikokubun'   => $rows['在庫区分'], 
-         'vessel'   => $rows['本船'], 
-         'yamamoto'   => $rows['山元'],
-         'shupou_uketuke_date'   => $rows['出報受付年月日'],
-         'setuzoku_code'   => $rows['接続元コード'], 
-         'error_code'   => $rows['エラーコード１'], 
-         'error_message'   => $rows['エラーメッセージ１'] 
-         
-        );
-        
-        // ↑　'データベースのカラム名'　=> $row['エクセル一行目の項目名']
-       }
-      }
+    DB::table('reports')
+      ->join('consignees', 'reports.consignee_code', '=', 'consignees.consignee_code')
+      ->join('products', 'reports.product_code', '=', 'products.product_code')
+      ->update([
+        'reports.consignee' => DB::raw('consignees.consignee'),
+        'reports.product' => DB::raw('products.product'),
+      ]);
 
-      if(!empty($insert_data))
-      {
-       DB::table('reports')->insert($insert_data);
-      }
-     // dd($insert_data);
-     
-     $report_data = DB::table('reports')
-       ->rightJoin('consignees','reports.consignee_code','=','consignees.consignee_code')
-       ->rightJoin('products','reports.product_code','=','products.product_code')
-       ->get();
-       
-       // dd($report_data);
-       
-       
-      $report_data->toArray();
-      
-       foreach($report_data as $rows){
-        dd($rows);
-        Report::update([
-             'error_no'  => $rows['error_no'],
-         ]);
-        $insert_report[] = array(
-         'error_no'  => $rows['error_no'],
-         'order_no'  => $rows['指図ＮＯ'],
-         'consignee_code'  => $rows['荷受人'],
-         'consignee'  => $rows['荷受人名称'],
-         'hub_code'  => $rows['拠点コード'],
-         'hub_name'  => $rows['拠点名称'],
-         'product_code'   => $rows['品名コード'],
-         'product'   => $rows['品名名称'],
-         'yoryo'   => $rows['容量'], 
-         'mt'   => $rows['出荷数量'], 
-         'supply_unit_price'   => $rows['供給単価'], 
-         'supply_price'   => $rows['供給金額'], 
-         'supply_month'   => $rows['供給限月'], 
-         'ship_date'   => $rows['出荷年月日'], 
-         'supply_delivery_condition'   => $rows['供給受渡条件'], 
-         'recieving_delivery_condition' => $rows['受入受渡条件'], 
-         'jibetu'   => $rows['次別'], 
-         'shupou_no'   => $rows['出報№'], 
-         'zaikokubun'   => $rows['在庫区分'], 
-         'vessel'   => $rows['本船'], 
-         'yamamoto'   => $rows['山元'],
-         'shupou_uketuke_date'   => $rows['出報受付年月日'],
-         'setuzoku_code'   => $rows['接続元コード'], 
-         'error_code'   => $rows['エラーコード１'], 
-         'error_message'   => $rows['エラーメッセージ１'] 
-         
-        );
-        
-        // ↑　'データベースのカラム名'　=> $row['エクセル一行目の項目名']
-       }
-       DB::table('reports')->insert($insert_report);
-       
-       // dd($report_data);
-       
-      // DB::table('reports')
-            
-      //       ->update(['consignee' => consignee],
-      //                ['product' => product]
-      //  );
-                      
-       // $report_datas = $report_data->toArray();
-       
-       // dd($report_datas);
-      
-       
-     return back()->with('success', 'Excel Data Imported successfully.');
-    }
+    return back()->with('success', 'Excel Data Imported successfully.');
+  }
 
-    function export()
-    {
-     $report_data = DB::table('reports')->get()->toArray();
-     $report_array[] = array(
-      'エラー№',
-      '指図№', 
-      '荷受人',
-      '荷受人名称',
-      '拠点コード',
-      '拠点名称',
-      '品名コード',
-      '品名名称',
-      '容量',
-      '出荷数量',
-      '供給単価',
-      '供給金額',
-      '供給限月',
-      '出荷年月日',
-      '供給受渡条件',
-      '受入受渡条件',
-      '次別',
-      '出報№',
-      '在庫区分',
-      '本船',
-      '山元',
-      '出報受付年月日',
-      '接続元コード',
-      'エラーコード',
-      'エラーメッセージ',
-      );
-     
-     foreach($report_data as $data)
-     {
-      $report_array[] = array(
-       'エラー№'  => $data->error_no,
-       '指図№'   => $data->order_no,
-       '荷受人'    => $data->consignee_code,
-       '荷受人名称'  => $data->consignee,
-       '拠点コード'   => $data->hub_code,
-       '拠点名称' => $data->hub_name,
-       '品名コード'   => $data->product_code,
-       '品名名称'   => $data->product,
-       '容量'   => $data->yoryo,
-       '出荷数量'   => $data->mt,
-       '供給単価'   => $data->supply_unit_price,
-       '供給金額'   => $data->supply_price,
-       '供給限月'   => $data->supply_month,
-       '出荷年月日'   => $data->ship_date,
-       '供給受渡条件'   => $data->supply_delivery_condition,
-       '受入受渡条件'   => $data->recieving_delivery_condition,
-       '次別'   => $data->jibetu,
-       '出報№'   => $data->shupou_no,
-       '在庫区分'   => $data->zaikokubun,
-       '本船'   => $data->vessel,
-       '山元'   => $data->yamamoto,
-       '出報受付年月日'   => $data->shupou_uketuke_date,
-       '接続元コード'   => $data->setuzoku_code,
-       'エラーコード'   => $data->error_code,
-       'エラーメッセージ'   => $data->error_message
-      );
-      
-     }
-     Excel::create('Report Data', function($excel) use ($report_array){
-      $excel->setTitle('Report Data');
-      $excel->sheet('Report Data', function($sheet) use ($report_array){
-       $sheet->fromArray($report_array, null, 'A1',false,false)
-       ->setWidth([
-                    'A' =>10,
-                    'B' =>10,
-                    // 'C',
-                    // 'E',
-                    // 'G',
-                    // 'I',
-                    // 'J',
-                    // 'M',
-                    // 'O',
-                    // 'P','Q','R','S','T','U' => 10,
-                    // 'D','F','H','Y' => 25,
-                    // 'K','L','X' => 12,
- ]);
+  function export()
+  {
+    return Excel::download(new ReportsExport, 'reports.xlsx');
+  }
 
-      });
-     })->download('xlsx');
-    }
-    
-    public function delete()
-    
-        {    //該当するNews Modelを取得
-            DB::table('reports')->delete();
-            
-            //削除する
-            // $report->delete();
-            return redirect('/report');
-        }
-        
-   public function insurance(){
+  public function delete()
+
+  {    //該当するNews Modelを取得
+    DB::table('reports')->delete();
+
+    //削除する
+    // $report->delete();
+    return redirect('/report');
+  }
+
+  public function insurance()
+  {
     return view('insurance');
-   }
-   
-   public function application(){
-    return view('application');
-   }
-   
-   public function invoice(){
-    return view('invoice');
-   }
-   
-    
-}
+  }
 
+  public function application()
+  {
+    return view('application');
+  }
+
+  public function invoice()
+  {
+    return view('invoice');
+  }
+}
