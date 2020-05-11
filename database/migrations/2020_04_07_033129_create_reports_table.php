@@ -16,7 +16,7 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->bigIncrements('id');
             
-            $table->string('error_no');
+            $table->string('error_no')->nullable();
             $table->string('order_no');
             $table->text('consignee_code');
             $table->text('consignee')->nullable();

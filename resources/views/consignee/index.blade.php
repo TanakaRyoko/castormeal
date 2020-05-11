@@ -11,7 +11,7 @@
         <br>
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ action('ProductController@create')}}" role="button" class="btn btn-primary">商品追加</a>
+                <a href="{{ action('ConsigneeController@create')}}" role="button" class="btn btn-primary">荷受人追加</a>
             </div>
             <br>
             <br>

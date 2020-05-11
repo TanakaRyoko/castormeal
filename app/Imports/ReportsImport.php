@@ -39,6 +39,9 @@ class ReportsImport implements ToModel, WithHeadingRow
             'yamamoto'          => $row['yamamoto'],
             'shupou_uketuke_date'   => $row['shupou_uketuke_date'],
             'setuzoku_code'     => $row['setuzoku_code'],
+            'error_no'     => $row['error_no'],
+            'error_message'     => $row['error_message'],
+            
         ]);
     }
 }

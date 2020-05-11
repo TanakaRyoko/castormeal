@@ -27,7 +27,8 @@
                         
                         
                         <a href="{{ route('home') }}" class="btn btn-outline-success">戻る</a>
-                        
+                        <br>
+                        <br>
                             <div class ="form-group row">
                                 <label class="col-md-2">荷受人コード</label>
                                     <div class="col-md-4">
@@ -47,7 +48,7 @@
                             <div class="col-md-3">
                                 <input type="hidden" name="id" value="">
                                 {{csrf_field()}}
-                                <input type="submit" class="btn btn-primary" value="登録">
+                                <input type="submit" class="btn btn-success" value="登録">
                             </div>
                    </form>
                 </body>
