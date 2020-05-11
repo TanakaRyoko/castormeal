@@ -19,24 +19,24 @@ class CreateVesselsTable extends Migration
             
             $table->string('contract_no');
             $table->string('product');
+            $table->string('shipping_company');
             $table->string('port_of_discharging');
             $table->date('estimate_time_of_loading');
-            $table->date('time_of_arrival');
-            $table->string('containers');
-            $table->string('shipping_company');
             $table->text('name_of_vessel')->nullable();
             $table->date('bl_date')->nullable();
+            $table->date('time_of_arrival');
+            $table->string('containers');
             $table->string('vessel_no')->nullable();
             $table->string('register_no')->nullable();
             $table->string('mt')->nullable();
             $table->text('bl_no')->nullable();
             $table->float('remmitance')->nullable();
             $table->float('unit_price')->nullable();
-            $table->date('remmitance_date')->nullable();
             $table->float('rate')->nullable();
             $table->float('interest_rates')->nullable();
             $table->string('japanese_yen')->nullable();
             $table->boolean('bank_charge')->nullable();
+            $table->date('remmitance_date')->nullable();
             $table->timestamps();
          
         });

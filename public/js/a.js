@@ -104,7 +104,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/ec2-user/environment/castormeal/castormeal/resources/js/a.js */"./resources/js/a.js");
+module.exports = __webpack_require__(/*! /home/ec2-user/environment/castormeal/resources/js/a.js */"./resources/js/a.js");
 
 
 /***/ })

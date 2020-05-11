@@ -7,11 +7,13 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 <!--public/css/menu.cssを呼び出す-->
+
+
   
     <!--<h3>コンテナ船管理</h3>-->
     <br>
     <br>
-    <div class="container" id="menu">
+    <div class="container-fluid" id="menu">
         <div class ="row" id="command">
                 <div class="col-md-6" >
                     <form action = "{{ action('ImportExcelController@index') }}">

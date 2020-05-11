@@ -17,7 +17,7 @@
  <body>
     <br />
   
-    <div class="container">
+    <div class="container-fluid" id="content">
      
       <button id="square_btn" onClick="history.back()">戻る</button>
       <br>

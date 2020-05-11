@@ -32,11 +32,9 @@
     <body>
         
         <div id="app">
-            
             {{-- 画面上部に表示するナビゲーションバーです。 --}}
-            
-            <nav class="navbar-dark navbar-laravel">
-                <div class="container-fluid" id="nav">
+            <nav class="navbar-expand-md navbar-dark navbar-laravel">
+                <div class="container" id="nav">
                     <a class="navbar-brand" href="{{ url('/')}}">
                         {{ config('app.name','Laravel') }}
                     </a>
@@ -60,15 +58,8 @@
                             <!-- Authentication Links -->
                         {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a></li>
+                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
-                        <!--ヘルパ関数について-->
-                        <!--「__(‘Login’)」という構文-->
-                        
-                        <!--この「__」は、ヘルパ関数（viewで使うための関数）の一種で、翻訳文字列の取得として使われます。-->
-                        
-                        <!--resources/langの中に、多言語対応できるようにファイルを作成して使います。-->
-
                         @else
                             <ul class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -89,12 +80,11 @@
                             </ul>
                             @endguest
 
-                        
+                        </ul>
                     </div>
-                
+                </div>
                 </div>
             </nav> 
-            
             {{-- ここまでナビゲーションバー --}}
             
             <main class="py-4">

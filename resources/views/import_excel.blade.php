@@ -19,7 +19,7 @@
  <body>
   
   
-  <div class="container">
+  <div class="container-fluid">
    
     <button id="square_btn" onClick="history.back()">戻る</button>
     <br>
@@ -47,7 +47,7 @@
    <div class="jumbotron">
   
       <h1>本船情報登録</h1>
-      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <!--<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>-->
       <br>
       <form method="post" enctype="multipart/form-data" action="{{ url('/import_excel/import') }}">
         {{ csrf_field() }}
@@ -96,8 +96,9 @@
      <h3 class="panel-title">本船情報</h3>
     </div>
     <div class="panel-body">
-     <div class="table-responsive">
-      <table class="table table-bordered table-striped">
+     <div class="table-sm" style="font-size: 5pt; line-height: 200%; ">
+      <table class="table table-bordered table-hover">
+       <thead class="thead-light">
        <tr>
         <th>操　作</th>
         <th>書　類</th>
@@ -121,6 +122,7 @@
         <th>日本円</th>
         <th>バンクチャージ</th>
        </tr>
+       </thead>
        @foreach($data as $row)
        <tr>
         <td>

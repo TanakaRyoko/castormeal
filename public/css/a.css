@@ -1,15 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background-image: url(/images/belgium-1601918_1280.jpg?19f3394f7d9a365fd84de98745a6bede);
   background-repeat: repeat;
   opacity: 0.95;
   background-position: center;
-  background-color: #ffffff;
+  background-color: #fffff;
   color: #000000;
   font-weight: bold;
+  list-style: none;
+  width: 100vw;
+  height: 100vh;
 }
 
 .navbar-laravel {
-  background-colr: #ffffff;
+  background-colr: #fffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
@@ -44,17 +51,18 @@ body {
 
 .listcontainer {
   background-color: #ffffff;
-  padding: 20px;
 }
 
 #nav {
-  background-color: #ffffff;
+  background-color: #8069F2;
   padding: 20px;
   margin: top 30px;
+  border: solid 1px #000;
 }
 
 #menu {
-  background-color: #ffffff;
+  background-color: #fffff;
   padding: 50px;
+  border: solid 1px #000;
 }
 
