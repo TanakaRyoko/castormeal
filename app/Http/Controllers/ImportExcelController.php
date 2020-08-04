@@ -9,7 +9,7 @@ use App\Exports\DateExport;
 use App\Model\Vessel;
 class ImportExcelController extends Controller
 {
-    function index()
+    public function index()
     {
      $data = DB::table('vessels')->orderBy('contract_no', 'ASC')->get();
      return view('import_excel', compact('data'));
@@ -18,7 +18,7 @@ class ImportExcelController extends Controller
     
     
 
-    function import(Request $request)
+    public function import(Request $request)
     {
     $this->validate($request, [
       'select_file'  => 'required|mimes:xls,xlsx'
@@ -66,7 +66,7 @@ class ImportExcelController extends Controller
      return back()->with('success', 'Excel Data Imported successfully.');
     }
 
-    function export()
+    public function export()
     {
      $vessel_data = DB::table('vessels')->get()->toArray();
      $vessel_array[] = array('契約№', '商品名', '船社', '揚港','出航日','B/L DATE', '入港日','コンテナ数','本船№','台帳№','数量','B/LNO.','金額','単価','レート','金利','日本円','バンクチャージ');

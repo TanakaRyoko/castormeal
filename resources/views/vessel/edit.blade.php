@@ -21,7 +21,7 @@
                                 @endforeach
                             </ul>
                         @endif
-                        <button id="square_btn" onClick="history.back()">戻る</button>
+                        <a href="{{ route('home') }}" class="btn btn-outline-success">戻る</a>
                         <br>
                         <br>
                         

@@ -19,7 +19,7 @@
   
     <div class="container-fluid" id="content">
      
-      <button id="square_btn" onClick="history.back()">戻る</button>
+      <a href="{{ route('home') }}" class="btn btn-outline-success">戻る</a>
       <br>
       <br>
      @if(count($errors) > 0)
@@ -45,7 +45,7 @@
      <div class="jumbotron">
   
       <h1>出報エラー一覧</h1>
-      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <p class="lead">出報エラーファイルを読み込む際は、専用のヘッダーに変更してから読み込みを行ってください</p>
       <br>
       <form method="post" enctype="multipart/form-data" action="{{ url('report/import') }}">
         {{ csrf_field() }}

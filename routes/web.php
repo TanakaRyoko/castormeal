@@ -51,6 +51,7 @@ Route::get('/insurance','VesselController@insurance')->middleware('auth');
 Route::get('/application','VesselController@application')->middleware('auth');
 Route::get('/invoice','VesselController@invoice')->middleware('auth');
 
+Route::get('/search/{id}','VesselController@search')->middleware('auth');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');

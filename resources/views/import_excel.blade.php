@@ -21,7 +21,7 @@
   
   <div class="container-fluid">
    
-    <button id="square_btn" onClick="history.back()">戻る</button>
+    <a href="{{ route('home') }}" class="btn btn-outline-success">戻る</a>
     <br>
     <br>
    @if(count($errors) > 0)
@@ -47,7 +47,7 @@
    <div class="jumbotron">
   
       <h1>本船情報登録</h1>
-      <!--<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>-->
+      <p class="lead">本船情報を読み込む際には専用のヘッダーがついているファイルを使用してください</p>
       <br>
       <form method="post" enctype="multipart/form-data" action="{{ url('/import_excel/import') }}">
         {{ csrf_field() }}
@@ -83,6 +83,14 @@
        </tr>
        </table>
       </div>
+      <div>
+       <form method="post" enctype="multipart/form-data" action="{{ url('/import_excel/import') }}">
+        <input type="submit" name="upload" class="btn btn-outline-success" value="動静を更新する">
+        
+        </form>
+       
+      </div>
+      
     </div>
  
  
